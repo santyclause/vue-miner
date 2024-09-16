@@ -19,6 +19,8 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background-image: url('../img/night-sky.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 main {

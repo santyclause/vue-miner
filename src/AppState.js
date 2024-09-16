@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { Upgrade } from './models/Upgrade.js'
 
 // NOTE AppState is a reactive object to contain app level data
@@ -20,4 +20,6 @@ export const AppState = reactive({
   warpstone : 0,
   spentWarpstone : 0
 })
+
+export const clickRate = computed(()=> 10)
 
