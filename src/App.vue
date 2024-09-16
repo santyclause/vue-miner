@@ -28,55 +28,53 @@ const currentWarpstone = computed(() => {
     <h1 class="title">Moon Miner</h1>
   </header>
   <main>
-    <img src="assets/img/morrslieb.png" alt="Morrslieb" class="img-fluid">
+    <img src="./assets/img/morrslieb.png" alt="Morrslieb" class="img-fluid">
   </main>
   <footer class="container-fluid">
     <section class="row justify-content-center align-items-end">
-      <div class="col-md-2 d-flex justify-content-end align-items-center bgm-darker">
-        <p>+{{ clickRate }}<i class="mdi mdi-cursor-default-click-outline"></i></p>
+      <div class="col-md-2 d-flex justify-content-end align-items-center bgm-darker informational">
+        <h4>+{{ clickRate }}<i class="mdi mdi-cursor-default-click-outline"></i></h4>
       </div>
-      <div class="col-md-3 d-flex justify-content-between align-items-center bgm-dark">
-        <img src="assets/img/warpstone-a.png" alt="warpstone" class="img-fluid">
-        <p>{{ currentWarpstone }}</p>
+      <div class="col-md-3 d-flex justify-content-between align-items-center bgm-dark informational">
+        <img src="./assets/img/warpstone-a.png" alt="warpstone" class="img-fluid">
+        <h1>{{ currentWarpstone }}</h1>
       </div>
-      <div class="col-md-2 d-flex align-items-center bgm-darker">
-        <p>+{{ autoRate }}<i class="mdi mdi-clock-outline"></i></p>
+      <div class="col-md-2 d-flex align-items-center bgm-darker informational">
+        <h4>+{{ autoRate }}<i class="mdi mdi-clock-outline"></i></h4>
       </div>
     </section>
     <section class="row bgm-dark">
-      <div class="col-md-6">
-        <div class="p-5 bgm-darker">
-          <section class="row">
-            <div class="col-12">
-              <h3>CLICK UPGRADES</h3>
-              <div>
-                <!-- TODO click upgrades -->
-              </div>
+      <div class="col-md-6 p-5">
+        <section class="row p-3 bgm-darker">
+          <div class="col-md-6">
+            <h3>CLICK UPGRADES</h3>
+            <div>
+              <!-- TODO click upgrades -->
             </div>
-          </section>
-          <section class="row">
+          </div>
+          <div class="col-md-6">
             <h3>AUTO UPGRADES</h3>
             <div>
-              <!-- TODO Auto Upgrades -->
+                <!-- TODO Auto Upgrades -->
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </div>
-      <div class="col-md-6">
-        <div class="p-5 bgm-darker">
-          <section class="row">
+      <div class="col-md-6 p-5">
+        <section class="row p-3 bgm-darker">
+          <div class="col-md-6">
             <h3>CLICK STATS</h3>
             <div>
               <!-- TODO Click stats -->
             </div>
-          </section>
-          <section class="row">
+          </div>
+          <div class="col-md-6">
             <h3>AUTO STATS</h3>
             <div>
               <!-- TODO Auto stats -->
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </div>
     </section>
   </footer>

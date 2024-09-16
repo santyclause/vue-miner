@@ -12,14 +12,13 @@
 
 body {
   overscroll-behavior: none;
-  background-image: url('./assets/img/night-sky.jpg');
 }
 
 #app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--bs-page);
+  background-image: url('../img/night-sky.jpg');
 }
 
 main {
