@@ -1,4 +1,4 @@
-import { AppState } from "@/AppState.js";
+import { AppState, autoRate } from "@/AppState.js";
 
 class WarpstoneService {
   spendWarpstone(price) {
@@ -12,6 +12,12 @@ class WarpstoneService {
 
   addWarpstone(rate) {
     AppState.warpstone += rate;
+  }
+
+  startAutoTimer() {
+    setInterval(() => {
+      this.addWarpstone(Math.round(autoRate.value))
+    }, 3000)
   }
 }
 

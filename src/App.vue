@@ -1,33 +1,53 @@
 <script setup>
-import { AppState } from './AppState.js';
-import { computed, ref, reactive } from 'vue';
+import { AppState, clickRate, autoRate } from './AppState.js';
+import { computed, ref, reactive, watch } from 'vue';
 import { upgradesService } from './services/UpgradesService.js';
 import { warpstoneService } from './services/WarpstoneService.js';
+import { helpersService } from './services/HelpersService.js';
 
 
 const manualUpgrades = AppState.upgrades.filter((upgrade) => upgrade.type == 'manual');
 const autoUpgrades = AppState.upgrades.filter((upgrade) => upgrade.type == 'auto');
 
-const clickRate = computed(() => {
-  return upgradesService.getRate(manualUpgrades);
-});
+// const clickRate = computed(() => {
+//   return upgradesService.getRate(manualUpgrades);
+// });
 
-const autoRate = computed(() => {
-  return upgradesService.getRate(autoUpgrades);
-});
+// const autoRate = computed(() => {
+//   return upgradesService.getRate(autoUpgrades);
+// });
 
 const currentWarpstone = computed(() => {
   return warpstoneService.getCurrentWarpstone();
 });
 
+const helpers = computed(() => AppState.helpers);
+
 function clickMoon() {
   warpstoneService.addWarpstone(clickRate.value);
 }
 
+let timerStarted = false;
+
 function buyItem(upgrade) {
   warpstoneService.spendWarpstone(upgrade.price);
   upgradesService.buyItem(upgrade);
+  if(!timerStarted && upgrade.type == 'auto') {
+    warpstoneService.startAutoTimer();
+    timerStarted = true;
+  }
+  if(upgrade.type == 'auto') {
+    helpersService.createHelper(upgrade.name);
+  }
 }
+
+
+// watch(()=>AppState.upgrades, () => {
+//   if(!timerStarted && AppState.upgrades.some(u => u.qty > 0 && u.type == 'auto')) {
+//     warpstoneService.startAutoTimer();
+//     timerStarted = true;
+//   }
+// })
 
 </script>
 
@@ -37,7 +57,13 @@ function buyItem(upgrade) {
   </header>
   <main>
     <div class="d-flex justify-content-center moon-cont">
-      <img v-on:click="clickMoon()" src="./assets/img/morrslieb.png" alt="Morrslieb" class="img-fluid moon">
+      <div class="rel h-100 d-inline-block">
+        <img v-on:click="clickMoon()" src="./assets/img/morrslieb.png" alt="Morrslieb" class="moon">
+        <div v-for="helper in helpers" :key="helper.name" class="rat" :style="{top: helper.top + '%', left: helper.left + '%', transform: `rotate(${helper.rot}deg)`}">
+          <p>{{ helper.emoji }}</p>
+          <p class="small-text">{{ helper.name }}</p>
+        </div>
+      </div>
     </div>
   </main>
   <footer class="container-fluid">
@@ -99,7 +125,7 @@ function buyItem(upgrade) {
               <div class="stat">{{ upgrade.qty }}</div>
               <p>{{ upgrade.name }}</p>
               <i class="mdi mdi-clock-outline"></i>
-              <div class="stat" :style="{fontSize: `${upgrade.qty}px` }"> {{ upgrade.qty * upgrade.amount }}</div>
+              <div class="stat"> {{ upgrade.qty * upgrade.amount }}</div>
             </div>
           </div>
         </section>
@@ -131,6 +157,15 @@ p {
   font-weight: 500;
 }
 
+.rel {
+  position:relative;
+}
+
+.small-text {
+  font-size: 0.5rem;
+  color:red;
+}
+
 .title {
   color: var(--dark);
   text-shadow: 5px 5px 0px var(--primary);
@@ -139,12 +174,21 @@ p {
 }
 
 .moon-cont {
-  position: relative;
   margin: 3%;
 }
 
+
+.rat{
+  position:absolute;
+  color: var(--light);
+  text-shadow: 1px 1px 3px black;
+  user-select: none;
+  pointer-events: none;
+  text-align: center;
+}
+
 .moon {
-  width: 20%;
+  width: 30%;
 }
 
 .informational {
@@ -199,5 +243,6 @@ p {
   color: var(--primary);
   font-weight: 600;
 }
+
 
 </style>
