@@ -1,5 +1,3 @@
-import { AppState } from "@/AppState.js";
-
 class UpgradesService {
   buyItem(upgrade) {
     upgrade.qty++;

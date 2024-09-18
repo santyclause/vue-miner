@@ -1,6 +1,6 @@
 <script setup>
 import { AppState, clickRate, autoRate } from './AppState.js';
-import { computed, ref, reactive, watch } from 'vue';
+import { computed } from 'vue';
 import { upgradesService } from './services/UpgradesService.js';
 import { warpstoneService } from './services/WarpstoneService.js';
 import { helpersService } from './services/HelpersService.js';
@@ -162,7 +162,8 @@ p {
 }
 
 .small-text {
-  font-size: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
   color:red;
 }
 
