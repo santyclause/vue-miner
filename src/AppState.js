@@ -21,7 +21,7 @@ export const AppState = reactive({
   // manualUpgrades : this.upgrades.filter((upgrade) => upgrade.type == 'manual'),
   // autoUpgrades : this.upgrades.filter((upgrade) => upgrade.type == 'auto'),
   helpers : [
-    new Helper({name: 'Lurk', type: 'Ratstronaut', top: 10, left: 10, rot: 0})
+    new Helper({name: 'Lurk', type: 'Ratstronaut', top: 20, left: 20, rot: 0})
   ],
   warpstone : 0,
   spentWarpstone : 0

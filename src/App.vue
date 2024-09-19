@@ -32,11 +32,11 @@ let timerStarted = false;
 function buyItem(upgrade) {
   warpstoneService.spendWarpstone(upgrade.price);
   upgradesService.buyItem(upgrade);
-  if(!timerStarted && upgrade.type == 'auto') {
+  if (!timerStarted && upgrade.type == 'auto') {
     warpstoneService.startAutoTimer();
     timerStarted = true;
   }
-  if(upgrade.type == 'auto') {
+  if (upgrade.type == 'auto') {
     helpersService.createHelper(upgrade.name);
   }
 }
@@ -57,9 +57,10 @@ function buyItem(upgrade) {
   </header>
   <main>
     <div class="d-flex justify-content-center moon-cont">
-      <div class="rel h-100 d-inline-block">
+      <div class="rel h-100">
         <img v-on:click="clickMoon()" src="./assets/img/morrslieb.png" alt="Morrslieb" class="moon">
-        <div v-for="helper in helpers" :key="helper.name" class="rat" :style="{top: helper.top + '%', left: helper.left + '%', transform: `rotate(${helper.rot}deg)`}">
+        <div v-for="helper in helpers" :key="helper.name" class="rat"
+          :style="{ top: helper.top + '%', left: helper.left + '%', transform: `rotate(${helper.rot}deg)` }">
           <p>{{ helper.emoji }}</p>
           <p class="small-text">{{ helper.name }}</p>
         </div>
@@ -86,7 +87,8 @@ function buyItem(upgrade) {
             <h4>CLICK UPGRADES</h4>
             <div v-for="upgrade in manualUpgrades" :key="upgrade.name" class="d-flex upgrade mb-1">
               <div class="btn-cont">
-                <button v-on:click="buyItem(upgrade)" class="btn-upg" :disabled="upgrade.price > currentWarpstone">{{ upgrade.price }}</button>
+                <button v-on:click="buyItem(upgrade)" class="btn-upg" :disabled="upgrade.price > currentWarpstone">{{
+                  upgrade.price }}</button>
               </div>
               <div>
                 <p>{{ upgrade.name }}</p>
@@ -98,7 +100,8 @@ function buyItem(upgrade) {
             <h4>AUTO UPGRADES</h4>
             <div v-for="upgrade in autoUpgrades" :key="upgrade.name" class="d-flex upgrade mb-1">
               <div class="btn-cont">
-                <button v-on:click="buyItem(upgrade)" class="btn-upg" :disabled="upgrade.price > currentWarpstone">{{ upgrade.price }}</button>
+                <button v-on:click="buyItem(upgrade)" class="btn-upg" :disabled="upgrade.price > currentWarpstone">{{
+                  upgrade.price }}</button>
               </div>
               <div>
                 <p>{{ upgrade.name }}</p>
@@ -112,7 +115,8 @@ function buyItem(upgrade) {
         <section class="row p-3 bgm-darker h-100">
           <div class="col-md-6">
             <h4>CLICK STATS</h4>
-            <div v-for="upgrade in manualUpgrades" :key="upgrade.name" class="d-flex justify-content-between align-items-center mb-1 stats">
+            <div v-for="upgrade in manualUpgrades" :key="upgrade.name"
+              class="d-flex justify-content-between align-items-center mb-1 stats">
               <div class="stat">{{ upgrade.qty }}</div>
               <p>{{ upgrade.name }}</p>
               <i class="mdi mdi-arrow-right-bold"></i>
@@ -121,7 +125,8 @@ function buyItem(upgrade) {
           </div>
           <div class="col-md-6">
             <h4>AUTO STATS</h4>
-            <div v-for="upgrade in autoUpgrades" :key="upgrade.name" class="d-flex justify-content-between align-items-center mb-1 stats">
+            <div v-for="upgrade in autoUpgrades" :key="upgrade.name"
+              class="d-flex justify-content-between align-items-center mb-1 stats">
               <div class="stat">{{ upgrade.qty }}</div>
               <p>{{ upgrade.name }}</p>
               <i class="mdi mdi-clock-outline"></i>
@@ -140,7 +145,7 @@ function buyItem(upgrade) {
 //   --main-height: calc(100vh - 32px - 64px);
 // }
 
-p { 
+p {
   margin: 0;
 }
 
@@ -158,13 +163,13 @@ p {
 }
 
 .rel {
-  position:relative;
+  position: relative;
 }
 
 .small-text {
   font-size: 0.75rem;
   font-weight: 600;
-  color:red;
+  color: red;
 }
 
 .title {
@@ -179,8 +184,8 @@ p {
 }
 
 
-.rat{
-  position:absolute;
+.rat {
+  position: absolute;
   color: var(--light);
   text-shadow: 1px 1px 3px black;
   user-select: none;
@@ -189,14 +194,14 @@ p {
 }
 
 .moon {
-  width: 30%;
+  width: 300px;
 }
 
 .informational {
   border-radius: 10px 10px 0px 0px;
   color: var(--primary);
   min-height: 5em;
-  padding:0.5em 1em;
+  padding: 0.5em 1em;
 }
 
 .warpstone-img {
@@ -217,7 +222,7 @@ p {
   border-radius: 10px;
   background-color: var(--primary);
   box-shadow: 0px 5px 0px var(--primaryDarker);
-  border:none;
+  border: none;
   font-weight: 900;
   width: 100%;
   padding: 0.5em 1em;
@@ -235,8 +240,8 @@ p {
 
 .stat {
   width: 45px;
-  height:45px;
-  display:flex;
+  height: 45px;
+  display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--light);
@@ -244,6 +249,4 @@ p {
   color: var(--primary);
   font-weight: 600;
 }
-
-
 </style>
